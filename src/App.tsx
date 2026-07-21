@@ -154,13 +154,11 @@ export default function App() {
                   >
                     <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
                     <span className="text-[10px] tracking-[0.25em] text-brand-champagne uppercase font-medium">
-                      Welcome, {guestName}
+                      Yth, {guestName}
                     </span>
                   </motion.div>
 
-                  <h2 className="font-serif-luxury text-xl md:text-2xl font-light text-brand-champagne tracking-[0.2em] uppercase mb-4">
-                    Undangan Pernikahan
-                  </h2>
+                  <h2 className="font-serif-luxury text-xl md:text-2xl font-light text-brand-champagne tracking-[0.2em] uppercase mb-4"></h2>
 
                   <h1 className="font-serif-luxury text-5xl md:text-6xl font-light text-brand-gold tracking-[0.1em] mb-4 uppercase">
                     Reza & Shafia
