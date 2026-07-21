@@ -138,7 +138,7 @@ export default function EventDetails() {
             </div>
 
             <p className="text-sm font-medium tracking-wide text-brand-champagne/95 mb-6 font-serif-luxury">
-              Waktu: 07.00 - 11.00 WIB
+              Waktu: 07.00 - 10.30 WIB
             </p>
 
             <p className="text-xs text-brand-champagne/70 leading-relaxed font-light mb-8 italic">
@@ -149,7 +149,9 @@ export default function EventDetails() {
 
           <div className="flex gap-2 items-center text-xs tracking-wider text-brand-gold/80 font-medium">
             <MapPin className="w-4 h-4 text-brand-gold" />
-            <span>Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat</span>
+            <span>
+              Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat
+            </span>
           </div>
         </motion.div>
 
@@ -179,14 +181,16 @@ export default function EventDetails() {
             </p>
 
             <p className="text-xs text-brand-champagne/70 leading-relaxed font-light mb-8 italic">
-              Pesta makan malam elegan di bawah gemerlap bintang laut Bali
-              dengan keindahan musik syahdu dan hidangan berkelas internasional.
+              Merayakan hari bahagia kedua mempelai melalui acara ramah tamah
+              dan santap siang bersama.
             </p>
           </div>
 
           <div className="flex gap-2 items-center text-xs tracking-wider text-brand-gold/80 font-medium">
             <MapPin className="w-4 h-4 text-brand-gold" />
-            <span>Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat</span>
+            <span>
+              Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat
+            </span>
           </div>
         </motion.div>
       </div>

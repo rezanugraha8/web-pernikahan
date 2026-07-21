@@ -43,7 +43,7 @@ export default function Gallery() {
       caption: "Senja di Pelukanmu",
     },
     {
-      src: "/foto/prewed%20pantai4.jpeg",
+      src: "/foto/prewed%20pantai3.jpeg",
       alt: "Keceriaan Reza & Shafia di pantai",
       caption: "Debur Ombak Cinta",
     },

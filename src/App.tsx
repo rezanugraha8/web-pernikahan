@@ -19,7 +19,7 @@ const backgroundPhotos = [
   "/foto/prewed%20jawa3.jpeg",
   "/foto/prewed%20pantai1.jpeg",
   "/foto/prewed%20pantai2.jpeg",
-  "/foto/prewed%20pantai4.jpeg",
+  "/foto/prewed%20pantai3.jpeg",
   "/foto/prewed%20jawa4.jpeg",
   "/foto/prewed%20jawa6.jpeg",
   "/foto/prewed%20jawa5.jpeg",
