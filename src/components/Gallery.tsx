@@ -38,9 +38,9 @@ export default function Gallery() {
       caption: "Langkah Bersama",
     },
     {
-      src: "/foto/prewed%20pantai2.jpeg",
+      src: "/foto/prewed%20pantai6.jpeg",
       alt: "Momen romantis saat matahari terbenam di pantai",
-      caption: "Senja di Pelukanmu",
+      caption: "Duduk Berdua Menikmati Senja",
     },
     {
       src: "/foto/prewed%20pantai3.jpeg",
