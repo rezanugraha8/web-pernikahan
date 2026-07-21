@@ -1,0 +1,6 @@
+{
+  "name": "Undangan Pernikahan Premium",
+  "description": "Website undangan pernikahan premium, elegan, dan penuh interaksi modern dengan tema Modern Luxury Devan & Kiara.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
