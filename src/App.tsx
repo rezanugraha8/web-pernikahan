@@ -28,6 +28,17 @@ const backgroundPhotos = [
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [guestName, setGuestName] = useState("Guest");
+
+  // Ambil nama tamu dari parameter URL ?to=Nama+Tamu
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nameFromUrl = params.get("to");
+    if (nameFromUrl) {
+      // Decode dan bersihkan spasi
+      setGuestName(decodeURIComponent(nameFromUrl).trim());
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,8 +84,8 @@ export default function App() {
         <BackgroundSlideshow
           images={backgroundPhotos}
           interval={5000}
-          overlayOpacity={0.2} // hanya 20% gelap agar foto tetap jelas
-          blurAmount="none" // tidak ada blur
+          overlayOpacity={0.2}
+          blurAmount="none"
         />
       )}
 
@@ -143,7 +154,7 @@ export default function App() {
                   >
                     <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
                     <span className="text-[10px] tracking-[0.25em] text-brand-champagne uppercase font-medium">
-                      Welcome Guest
+                      Welcome, {guestName}
                     </span>
                   </motion.div>
 
@@ -159,7 +170,6 @@ export default function App() {
 
                   <p className="text-xs tracking-[0.15em] text-zinc-300 font-light max-w-sm mt-3 uppercase leading-relaxed font-serif-luxury">
                     Minggu, 9 Agustus 2026 • Cimahi, Jawa Barat
-                    
                   </p>
                 </div>
 
@@ -182,7 +192,6 @@ export default function App() {
               </section>
 
               {/* ─── SEMUA SECTION DENGAN LATAR TRANSPARAN ─── */}
-              {/* Setiap komponen tetap memiliki background transparan (dipaksa dengan !bg-transparent) */}
               <div className="w-full !bg-transparent">
                 <Couple />
               </div>
