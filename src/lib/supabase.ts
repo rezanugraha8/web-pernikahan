@@ -1,22 +1,14 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-// Menggunakan tipe any agar tidak error jika file types belum ada
-const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL ?? "";
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY ?? "";
+const supabaseUrl = "https://pavlxefxsulmcdsuzzab.supabase.co";
+const supabaseAnonKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhdmx4ZWZ4c3VsbWNkc3V6emFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2ODE1MTIsImV4cCI6MjEwMDI1NzUxMn0.bBLhalf5JVhrEWMH8MxLprO21ESOtRLOVYEVADOsyVc";
 
-export const isSupabaseConfigured =
-  Boolean(supabaseUrl) &&
-  Boolean(supabaseAnonKey) &&
-  !supabaseUrl.includes("your-project");
+export const isSupabaseConfigured = true;
 
 let client: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
-  if (!isSupabaseConfigured) {
-    throw new Error(
-      "Supabase belum dikonfigurasi. Set VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY.",
-    );
-  }
   if (!client) {
     client = createClient(supabaseUrl, supabaseAnonKey);
   }
@@ -24,11 +16,5 @@ export function getSupabase(): SupabaseClient {
 }
 
 export function getSupabaseSafe(): SupabaseClient | null {
-  if (!isSupabaseConfigured) return null;
-  try {
-    return getSupabase();
-  } catch (e) {
-    console.error("Gagal menginisialisasi client Supabase:", e);
-    return null;
-  }
+  return getSupabase();
 }
