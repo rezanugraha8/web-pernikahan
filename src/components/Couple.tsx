@@ -52,7 +52,7 @@ export default function Couple() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }} // ← diperbaiki
+        viewport={{ once: false }}
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="max-w-2xl text-center mb-24 px-4 relative z-10"
       >
@@ -118,7 +118,7 @@ function TiltCard({ data, label, delay, isGroom }: any) {
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }} // ← diperbaiki
+      viewport={{ once: false }}
       transition={{ duration: 0.8, delay }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

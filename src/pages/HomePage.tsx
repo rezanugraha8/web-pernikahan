@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BackgroundVideo } from "@/components/layout/BackgroundVideo";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
@@ -16,7 +16,6 @@ import { GallerySection } from "@/components/sections/GallerySection";
 import { EventSection } from "@/components/sections/EventSection";
 import { CountdownSection } from "@/components/sections/CountdownSection";
 import { GiftSection } from "@/components/sections/GiftSection";
-import { RsvpSection } from "@/components/sections/RsvpSection";
 import { WishesSection } from "@/components/sections/WishesSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 import { useGuestName } from "@/hooks/useGuestName";
@@ -27,27 +26,6 @@ import { WEDDING_CONFIG } from "@/config/wedding";
 // Konfigurasi asset background
 const BACKGROUND_IMAGE = "/foto/prewed%20pantai3.jpeg";
 const BACKGROUND_VIDEO = "/background1.mp4";
-
-const LazySections = lazy(() =>
-  Promise.resolve({
-    default: function InvitationContent() {
-      return (
-        <>
-          <HeroSection guestName="" />
-          <CoupleSection />
-          <LoveStorySection />
-          <GallerySection />
-          <EventSection />
-          <CountdownSection />
-          <GiftSection />
-          <RsvpSection />
-          <WishesSection />
-          <FooterSection />
-        </>
-      );
-    },
-  }),
-);
 
 function SectionLoader() {
   return (
@@ -141,7 +119,6 @@ export default function HomePage() {
                     <EventSection />
                     <CountdownSection />
                     <GiftSection />
-                    <RsvpSection />
                     <WishesSection />
                     <FooterSection />
                   </Suspense>

@@ -30,8 +30,7 @@ export default function AudioPlayer({ playRequested }: AudioPlayerProps) {
         .then(() => {
           setIsPlaying(true);
         })
-        .catch((err) => {
-          console.log('Audio autoplay blocked by user gesture/policy ', err);
+        .catch(() => {
         });
     }
   }, [playRequested]);
