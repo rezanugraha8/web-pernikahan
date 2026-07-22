@@ -1,9 +1,13 @@
-import { motion } from 'framer-motion';
-import { WEDDING_CONFIG } from '@/config/wedding';
+import { motion } from "framer-motion";
+import { WEDDING_CONFIG } from "@/config/wedding";
 
 export function FooterSection() {
   return (
-    <footer id="footer" className="section-padding text-center" aria-label="Penutup">
+    <footer
+      id="footer"
+      className="section-padding text-center"
+      aria-label="Penutup"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +44,7 @@ export function FooterSection() {
 
         <div className="mt-16 pt-8 border-t border-white/10">
           <p className="text-[10px] tracking-wider text-white/30">
-            © 2026 {WEDDING_CONFIG.couple.displayName} — Crafted with love
+            © 2026 {WEDDING_CONFIG.couple.displayName} — Created By Reza Nugraha
           </p>
         </div>
       </motion.div>
