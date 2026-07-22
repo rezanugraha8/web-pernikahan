@@ -1,30 +1,34 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? "";
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
+// Menggunakan tipe any agar tidak error jika file types belum ada
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL ?? "";
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY ?? "";
 
-// Kita buat pengecekannya lebih longgar khusus untuk kunci sb_publishable_
 export const isSupabaseConfigured =
   Boolean(supabaseUrl) &&
   Boolean(supabaseAnonKey) &&
   !supabaseUrl.includes("your-project");
 
-let client: SupabaseClient<Database> | null = null;
+let client: SupabaseClient | null = null;
 
-export function getSupabase(): SupabaseClient<Database> {
+export function getSupabase(): SupabaseClient {
   if (!isSupabaseConfigured) {
     throw new Error(
-      "Supabase belum dikonfigurasi. Set VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY di .env.local",
+      "Supabase belum dikonfigurasi. Set VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY.",
     );
   }
   if (!client) {
-    client = createClient<Database>(supabaseUrl, supabaseAnonKey);
+    client = createClient(supabaseUrl, supabaseAnonKey);
   }
   return client;
 }
 
-export function getSupabaseSafe(): SupabaseClient<Database> | null {
+export function getSupabaseSafe(): SupabaseClient | null {
   if (!isSupabaseConfigured) return null;
-  return getSupabase();
+  try {
+    return getSupabase();
+  } catch (e) {
+    console.error("Gagal menginisialisasi client Supabase:", e);
+    return null;
+  }
 }
