@@ -1,52 +1,61 @@
-import { memo, useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { WEDDING_CONFIG } from '@/config/wedding';
+import { useRef, useEffect } from "react";
 
-export const BackgroundVideo = memo(function BackgroundVideo() {
+interface Props {
+  active: boolean;
+  coverImage: string;
+  videoSrc: string;
+}
+
+export function BackgroundVideo({ active, coverImage, videoSrc }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoIndex, setVideoIndex] = useState(0);
-  const videos = WEDDING_CONFIG.media.backgroundVideos;
 
   useEffect(() => {
+    if (!active) return;
     const video = videoRef.current;
     if (!video) return;
 
-    const play = () => {
-      video.play().catch(() => undefined);
-    };
-
-    play();
-    video.addEventListener('canplay', play);
-    return () => video.removeEventListener('canplay', play);
-  }, [videoIndex]);
-
-  const handleEnded = () => {
-    if (videos.length > 1) {
-      setVideoIndex((prev) => (prev + 1) % videos.length);
-    }
-  };
+    video.play().catch(() => {
+      const playOnInteraction = () => {
+        video.play();
+        document.removeEventListener("click", playOnInteraction);
+      };
+      document.addEventListener("click", playOnInteraction, { once: true });
+    });
+  }, [active]);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <motion.div
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0"
-      >
-        <video
-          ref={videoRef}
-          key={videos[videoIndex]}
-          src={videos[videoIndex]}
-          autoPlay
-          muted
-          loop={videos.length === 1}
-          playsInline
-          onEnded={handleEnded}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+    <div className="fixed inset-0 z-0 overflow-hidden">
+      {/* --- MODE 1: Sebelum undangan dibuka (foto + charcoal overlay) --- */}
+      {!active && (
+        <>
+          <img
+            src={coverImage}
+            alt="Wedding Cover"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Overlay charcoal (hampir hitam kemerahan) sesuai brand */}
+          <div className="absolute inset-0 bg-[#1f0206]/90 backdrop-blur-[3px]" />
+        </>
+      )}
+
+      {/* --- MODE 2: Setelah undangan dibuka (video jernih + blur tipis) --- */}
+      {active && (
+        <>
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover animate-cinematic-zoom"
+            poster={coverImage}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          {/* Hanya blur sangat tipis, tanpa warna tambahan */}
+          <div className="absolute inset-0 backdrop-blur-[2px] bg-black/5" />
+        </>
+      )}
     </div>
   );
-});
+}

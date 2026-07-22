@@ -1,29 +1,32 @@
-import { lazy, Suspense, useCallback, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { BackgroundVideo } from '@/components/layout/BackgroundVideo';
-import { LoadingScreen } from '@/components/layout/LoadingScreen';
-import { MusicPlayer } from '@/components/layout/MusicPlayer';
-import { FloatingControls } from '@/components/layout/FloatingControls';
-import { ScrollProgress } from '@/components/layout/ScrollProgress';
-import { FloatingFlowers } from '@/components/layout/FloatingFlowers';
-import { Particles } from '@/components/layout/Particles';
-import { CursorGlow } from '@/components/layout/CursorGlow';
-import { CoverSection } from '@/components/sections/CoverSection';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { CoupleSection } from '@/components/sections/CoupleSection';
-import { LoveStorySection } from '@/components/sections/LoveStorySection';
-import { GallerySection } from '@/components/sections/GallerySection';
-import { EventSection } from '@/components/sections/EventSection';
-import { CountdownSection } from '@/components/sections/CountdownSection';
-import { GiftSection } from '@/components/sections/GiftSection';
-import { RsvpSection } from '@/components/sections/RsvpSection';
-import { WishesSection } from '@/components/sections/WishesSection';
-import { FooterSection } from '@/components/sections/FooterSection';
-import { useGuestName } from '@/hooks/useGuestName';
-import { useTheme } from '@/hooks/useTheme';
-import { useScrollProgress } from '@/hooks/useScroll';
-import { fireConfetti } from '@/utils/confetti';
-import { WEDDING_CONFIG } from '@/config/wedding';
+import { lazy, Suspense, useCallback, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { BackgroundVideo } from "@/components/layout/BackgroundVideo";
+import { LoadingScreen } from "@/components/layout/LoadingScreen";
+import { MusicPlayer } from "@/components/layout/MusicPlayer";
+import { FloatingControls } from "@/components/layout/FloatingControls";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { FloatingFlowers } from "@/components/layout/FloatingFlowers";
+import { Particles } from "@/components/layout/Particles";
+import { CursorGlow } from "@/components/layout/CursorGlow";
+import { CoverSection } from "@/components/sections/CoverSection";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { CoupleSection } from "@/components/sections/CoupleSection";
+import { LoveStorySection } from "@/components/sections/LoveStorySection";
+import { GallerySection } from "@/components/sections/GallerySection";
+import { EventSection } from "@/components/sections/EventSection";
+import { CountdownSection } from "@/components/sections/CountdownSection";
+import { GiftSection } from "@/components/sections/GiftSection";
+import { RsvpSection } from "@/components/sections/RsvpSection";
+import { WishesSection } from "@/components/sections/WishesSection";
+import { FooterSection } from "@/components/sections/FooterSection";
+import { useGuestName } from "@/hooks/useGuestName";
+import { useTheme } from "@/hooks/useTheme";
+import { useScrollProgress } from "@/hooks/useScroll";
+import { WEDDING_CONFIG } from "@/config/wedding";
+
+// Konfigurasi asset background
+const BACKGROUND_IMAGE = "/foto/prewed%20pantai3.jpeg";
+const BACKGROUND_VIDEO = "/background1.mp4";
 
 const LazySections = lazy(() =>
   Promise.resolve({
@@ -64,9 +67,9 @@ export default function HomePage() {
   const handleLoadingComplete = useCallback(() => setIsLoading(false), []);
 
   const handleOpen = useCallback(() => {
-    fireConfetti();
+    // fireConfetti(); // dihapus - tidak ada efek confetti
     setIsOpen(true);
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, []);
 
   return (
@@ -77,13 +80,23 @@ export default function HomePage() {
 
       {!isLoading && (
         <>
-          {isOpen && <BackgroundVideo />}
+          {/* Background: foto statis sebelum open, video setelah open */}
+          <BackgroundVideo
+            active={isOpen}
+            coverImage={BACKGROUND_IMAGE}
+            videoSrc={BACKGROUND_VIDEO}
+          />
+
           {isOpen && <FloatingFlowers />}
           {isOpen && <Particles />}
           {isOpen && <CursorGlow />}
 
           <MusicPlayer playRequested={isOpen} />
-          <FloatingControls theme={theme} onToggleTheme={toggleTheme} visible={isOpen} />
+          <FloatingControls
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            visible={isOpen}
+          />
           {isOpen && <ScrollProgress progress={scrollProgress} />}
 
           {isOpen && (
@@ -106,7 +119,6 @@ export default function HomePage() {
                   exit={{ opacity: 0, scale: 1.05, y: -40 }}
                   transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {!isOpen && <BackgroundVideo />}
                   <CoverSection
                     guestName={guestName}
                     isVip={isVip}

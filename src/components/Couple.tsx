@@ -10,21 +10,20 @@ export default function Couple() {
   };
 
   const groom = {
-    name: "Mohamad Reza Nugraha",
+    name: "Reza Nugraha",
     nickname: "Eca",
     sonOf: "Putra ke-2 dari Bapak Tarmubi (Almarhum)",
     instagram: "_rezanugrahaa",
-    bio: "Lahir di Cimahi pada tanggal 8 Oktober 1999.",
-    image: "/foto/pengantin%20pria.jpeg",
+    bio: "Seorang Frontend Web Developer yang teliti, menyukai teknologi, dan berdedikasi menciptakan pengalaman digital yang indah. Lahir 8 Oktober 1999.",
+    image: "public/foto/pengantin pria.jpeg",
   };
 
   const bride = {
-    name: "Shafia Salsa Halwa",
-    nickname: "Caca",
+    name: "Shafia",
     daughterOf: "Putri ke-2 dari Bapak Supardi",
     instagram: "shafiasalsaa",
-    bio: "Lahir di Bandung pada tanggal 4 Juni 2002.",
-    image: "/foto/pengantin%20wanita.jpeg",
+    bio: "Seorang Nail Enterpreneur (Nail Artist) yang kreatif, penuh semangat, dan mencintai seni merawat kuku serta kecantikan. Lahir 4 Juni 2002.",
+    image: "public/foto/pengantin wanita.jpeg",
   };
 
   return (
@@ -53,7 +52,7 @@ export default function Couple() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
+        viewport={{ once: false }} // ← diperbaiki
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="max-w-2xl text-center mb-24 px-4 relative z-10"
       >
@@ -119,7 +118,7 @@ function TiltCard({ data, label, delay, isGroom }: any) {
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: false }} // ← diperbaiki
       transition={{ duration: 0.8, delay }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

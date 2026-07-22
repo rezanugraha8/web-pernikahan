@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
+// Placeholder jika gambar gagal dimuat
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23e8d5c4'/%3E%3Ctext x='50%25' y='50%25' font-family='serif' font-size='24' fill='%23806040' text-anchor='middle' dy='.3em'%3EGallery%3C/text%3E%3C/svg%3E";
 
@@ -18,32 +19,32 @@ export default function Gallery() {
 
   const galleryImages = [
     {
-      src: "/foto/prewed%20jawa1.jpeg",
+      src: "public/foto/prewed jawa1.jpeg",
       alt: "Reza & Shafia - Prewedding dengan busana adat Jawa",
       caption: "Harmoni dalam Tradisi",
     },
     {
-      src: "/foto/prewed%20jawa2.jpeg",
+      src: "public/foto/prewed jawa2.jpeg",
       alt: "Reza & Shafia - Momen mesra dalam balutan Jawa",
       caption: "Kasih yang Luhur",
     },
     {
-      src: "/foto/prewed%20jawa3.jpeg",
+      src: "public/foto/prewed jawa3.jpeg",
       alt: "Potret elegan Reza & Shafia",
       caption: "Janji Abadi",
     },
     {
-      src: "/foto/prewed%20pantai1.jpeg",
+      src: "public/foto/prewed pantai1.jpeg",
       alt: "Reza & Shafia berjalan di tepi pantai",
       caption: "Langkah Bersama",
     },
     {
-      src: "/foto/prewed%20pantai6.jpeg",
+      src: "public/foto/prewed pantai2.jpeg",
       alt: "Momen romantis saat matahari terbenam di pantai",
-      caption: "Duduk Berdua Menikmati Senja",
+      caption: "Senja di Pelukanmu",
     },
     {
-      src: "/foto/prewed%20pantai3.jpeg",
+      src: "public/foto/prewed pantai4.jpeg",
       alt: "Keceriaan Reza & Shafia di pantai",
       caption: "Debur Ombak Cinta",
     },
@@ -68,7 +69,7 @@ export default function Gallery() {
 
   const handleDragEnd = (
     e: MouseEvent | TouchEvent | PointerEvent,
-    { offset, velocity }: PanInfo,
+    { offset, velocity }: PanInfo
   ) => {
     if (activePhoto === null) return;
     const swipeThreshold = 50;
@@ -109,7 +110,7 @@ export default function Gallery() {
           transition={{ duration: 0.8 }}
           className="font-serif-luxury text-4xl md:text-5xl font-light text-brand-maroon tracking-wide mb-4"
         >
-          Galeri Prewedding
+          Galeri Pra-Wedding
         </motion.h2>
         <motion.div
           initial={{ width: 0 }}
@@ -128,7 +129,7 @@ export default function Gallery() {
       <div className="max-w-5xl w-full z-10">
         {/* Mobile: Seamless infinite marquee carousel */}
         <div
-          className={`md:hidden flex gap-4 pb-4 overflow-hidden ${isPaused ? "animation-play-state-paused" : ""}`}
+          className={`md:hidden flex gap-4 pb-4 overflow-hidden ${isPaused ? 'animation-play-state-paused' : ''}`}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
           onMouseEnter={() => setIsPaused(true)}
@@ -266,7 +267,7 @@ function GalleryCard({ img, index, onClick }: any) {
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: false }} // <-- diperbaiki
       transition={{ duration: 0.7, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

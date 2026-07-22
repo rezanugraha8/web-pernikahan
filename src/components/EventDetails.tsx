@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export default function EventDetails() {
-  const weddingDate = new Date("2026-08-09T07:00:00+07:00"); // WIB
+  const weddingDate = new Date("2026-08-09T16:00:00+08:00"); // WITA (Bali time)
   const [copied, setCopied] = useState(false);
 
   // Countdown states
@@ -47,19 +47,19 @@ export default function EventDetails() {
 
   // Google Calendar addition link (updated date)
   const getGoogleCalendarUrl = () => {
-    const start = "20260809T000000Z"; // 07:00 WIB
-    const end = "20260809T070000Z"; // 14:00 WIB
+    const start = "20260809T080000Z"; // UTC (16:00 WITA = 08:00 UTC)
+    const end = "20260809T140000Z"; // UTC
     const title = "Pernikahan Reza & Shafia";
     const details = "Undangan Pernikahan Premium Reza & Shafia.";
     const location =
-      "Jl. Jend. H. Amir Machmud No.331, Cibabat, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40523";
+      "Jl. Jend. H. Amir Machmud No.331, Cibabat, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40523"; // Ganti dengan lokasi Anda
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
   };
 
   const copyAddress = () => {
     navigator.clipboard.writeText(
       "Jl. Jend. H. Amir Machmud No.331, Cibabat, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40523",
-    );
+    ); // Ganti dengan alamat Anda
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -138,7 +138,7 @@ export default function EventDetails() {
             </div>
 
             <p className="text-sm font-medium tracking-wide text-brand-champagne/95 mb-6 font-serif-luxury">
-              Waktu: 07.00 - 10.30 WIB
+              Waktu: 07.00 - 11.00 WIB
             </p>
 
             <p className="text-xs text-brand-champagne/70 leading-relaxed font-light mb-8 italic">
@@ -149,9 +149,7 @@ export default function EventDetails() {
 
           <div className="flex gap-2 items-center text-xs tracking-wider text-brand-gold/80 font-medium">
             <MapPin className="w-4 h-4 text-brand-gold" />
-            <span>
-              Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat
-            </span>
+            <span>Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat</span>
           </div>
         </motion.div>
 
@@ -181,16 +179,14 @@ export default function EventDetails() {
             </p>
 
             <p className="text-xs text-brand-champagne/70 leading-relaxed font-light mb-8 italic">
-              Merayakan hari bahagia kedua mempelai melalui acara ramah tamah
-              dan santap siang bersama.
+              Pesta makan malam elegan di bawah gemerlap bintang laut Bali
+              dengan keindahan musik syahdu dan hidangan berkelas internasional.
             </p>
           </div>
 
           <div className="flex gap-2 items-center text-xs tracking-wider text-brand-gold/80 font-medium">
             <MapPin className="w-4 h-4 text-brand-gold" />
-            <span>
-              Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat
-            </span>
+            <span>Gedung Aula Layanan Sosial Dinas Sosial Provinsi Jawa Barat</span>
           </div>
         </motion.div>
       </div>
