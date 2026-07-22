@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
   motion,
   AnimatePresence,
@@ -67,9 +67,10 @@ export default function Gallery() {
     );
   };
 
+  // ✅ PERBAIKAN ADA DI SINI (Menambahkan underscore _e)
   const handleDragEnd = (
-    e: MouseEvent | TouchEvent | PointerEvent,
-    { offset, velocity }: PanInfo
+    _e: MouseEvent | TouchEvent | PointerEvent,
+    { offset, velocity }: PanInfo,
   ) => {
     if (activePhoto === null) return;
     const swipeThreshold = 50;
@@ -129,7 +130,7 @@ export default function Gallery() {
       <div className="max-w-5xl w-full z-10">
         {/* Mobile: Seamless infinite marquee carousel */}
         <div
-          className={`md:hidden flex gap-4 pb-4 overflow-hidden ${isPaused ? 'animation-play-state-paused' : ''}`}
+          className={`md:hidden flex gap-4 pb-4 overflow-hidden ${isPaused ? "animation-play-state-paused" : ""}`}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
           onMouseEnter={() => setIsPaused(true)}
@@ -234,7 +235,13 @@ export default function Gallery() {
 }
 
 // ─── Komponen Kartu Galeri dengan Tilt 3D ───
-function GalleryCard({ img, index, onClick }: any) {
+interface GalleryCardProps {
+  img: { src: string; alt: string; caption: string };
+  index: number;
+  onClick: () => void;
+}
+
+function GalleryCard({ img, index, onClick }: GalleryCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -267,7 +274,7 @@ function GalleryCard({ img, index, onClick }: any) {
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }} // <-- diperbaiki
+      viewport={{ once: false }}
       transition={{ duration: 0.7, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

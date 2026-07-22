@@ -48,8 +48,12 @@ export default function WishesSection() {
 
       if (error) throw error;
       setWishes(data || []);
-    } catch (err: any) {
-      console.error("Gagal mengambil wishes:", err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Gagal mengambil wishes:", err.message);
+      } else {
+        console.error("Gagal mengambil wishes:", err);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -71,7 +75,8 @@ export default function WishesSection() {
           schema: "public",
           table: "wishes",
         },
-        (payload) => {
+        // ✅ PERBAIKAN ADA DI SINI (Menambahkan tipe payload)
+        (payload: { new: Wish }) => {
           setWishes((prev) => [payload.new as Wish, ...prev]);
         },
       )
@@ -118,8 +123,12 @@ export default function WishesSection() {
       setSuccess(true);
 
       setTimeout(() => setSuccess(false), 4000);
-    } catch (err: any) {
-      console.error("Gagal menyimpan:", err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Gagal menyimpan:", err.message);
+      } else {
+        console.error("Gagal menyimpan:", err);
+      }
       setError("Gagal mengirim ucapan. Silakan coba lagi.");
     } finally {
       setIsSubmitting(false);
